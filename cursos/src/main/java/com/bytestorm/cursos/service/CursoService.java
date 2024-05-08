@@ -48,7 +48,7 @@ public class CursoService {
         return curso;
     }
 
-    public void inabilitarCurso(Long id) {
+    public Curso inabilitarCurso(Long id) {
         Curso curso = cursoRepository.findById(id).orElseThrow(
                 () -> new CursoNaoEncontradoException(String.format("Curso com id = %d, não foi encontrado", id))
         );
@@ -58,5 +58,6 @@ public class CursoService {
         } else {
             throw new CursoInativoException("curso inativo");
         }
+        return curso;
     }
 }
