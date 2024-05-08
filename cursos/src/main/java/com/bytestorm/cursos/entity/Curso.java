@@ -38,6 +38,6 @@ public class Curso implements Serializable {
     private boolean ativo;
 
     public enum AreaConhecimento {
-        ENGENHARIA_SOFTWARE, FÍSICA, MEDICINA
+        ENGENHARIA_SOFTWARE, FISICA, MEDICINA
     }
 }
