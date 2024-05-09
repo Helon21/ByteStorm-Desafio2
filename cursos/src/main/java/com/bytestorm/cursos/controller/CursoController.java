@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,8 +42,10 @@ public class CursoController {
 
     @Operation(summary = "Buscar curso por id", description = "Recurso para retornar um curso referente ao ID específicado",
             responses = {
-                @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class)))
+                    @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             }
     )
     @GetMapping("buscar-curso-id/{id}")
@@ -53,10 +56,11 @@ public class CursoController {
     }
 
     @Operation(summary = "Cadastro de curso", description = "Recurso para cadastrar curso",
-        responses = {
-            @ApiResponse(responseCode = "201", description = "Curso criado com sucesso",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class)))
-        }
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Curso criado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "409", description = "Nome do curso já existe")
+            }
     )
     @PostMapping("cadastrar")
     public ResponseEntity<CursoRequisicaoDTO> cadastrarCurso(@RequestBody CursoRequisicaoDTO dto) {
@@ -66,10 +70,12 @@ public class CursoController {
     }
 
     @Operation(summary = "Alterar Professor", description = "Recurso para fazer a alteração somente o atributo professor",
-        responses = {
-            @ApiResponse(responseCode = "201", description = "Professor alterado com sucesso",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class)))
-        }
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Professor alterado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+            }
     )
     @PatchMapping("alterar-professor/{id}")
     public ResponseEntity<CursoRequisicaoDTO> alterarProfessor(@PathVariable Long id, @RequestBody CursoRequisicaoDTO dto) {
@@ -80,10 +86,12 @@ public class CursoController {
     }
 
     @Operation(summary = "Inabilitar Curso", description = "Recurso para inabilitar um curso, recebendo como parâmetro um id, para localizar o curso a ser modificado",
-        responses = {
-            @ApiResponse(responseCode = "201", description = "Curso Inabilitado com sucesso",
-                content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class)))
-        }
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Curso Inabilitado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+            }
     )
     @PatchMapping("inabilitar-curso/{id}")
     public ResponseEntity<CursoRequisicaoDTO> inabilitarCurso(@PathVariable Long id) {
