@@ -31,10 +31,10 @@ public class Curso implements Serializable {
     private String professor;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="area_conhecimento", length = 50)
+    @Column(name="area_conhecimento", nullable = false, length = 50)
     private AreaConhecimento areaConhecimento;
 
-    @Column(name="status")
+    @Column(name="status", nullable = false)
     private boolean ativo;
 
     public enum AreaConhecimento {

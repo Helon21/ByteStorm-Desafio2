@@ -34,6 +34,7 @@ public class CursoService {
     @Transactional
     public Curso cadastrarCurso(Curso curso) {
         try {
+            curso.setAtivo(true);
             return cursoRepository.save(curso);
         } catch (DataIntegrityViolationException e) {
             throw new NomeCursoRepetidoException(String.format("Nome {%s} já existe", curso.getNome()));
