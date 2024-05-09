@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "b5546431-9b8c-4d35-84c3-49a70019cc74",
+		"name": "API-Cursos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27888908"
+	},
+	"item": [
+		{
+			"name": "cursos",
+			"item": [
+				{
+					"name": "buscar-todos-cursos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cursos/buscar-cursos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cursos",
+								"buscar-cursos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar-por-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cursos/buscar-curso-id/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cursos",
+								"buscar-curso-id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar-curso",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\":\"Teoria da Computação\",\r\n    \"quantidadeHoras\":16,\r\n    \"professor\":\"Girafales\",\r\n    \"areaConhecimento\":\"ENGENHARIA_SOFTWARE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cursos/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cursos",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alterar-professor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"professor\":\"Seu Madruga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cursos/alterar-professor/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cursos",
+								"alterar-professor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inativar-curso",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/cursos/inabilitar-curso/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"cursos",
+								"inabilitar-curso",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
