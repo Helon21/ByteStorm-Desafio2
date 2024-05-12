@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,8 @@ import static com.bytestorm.cursos.record.CursoRecord.CursoRequisicaoDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Tag(name = "Cursos", description = "Contém todas as operações relativas a gestão de curso")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/cursos/")
