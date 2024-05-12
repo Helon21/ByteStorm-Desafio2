@@ -5,7 +5,12 @@ import com.bytestorm.cursos.entity.Curso;
 import com.bytestorm.cursos.mapper.CursoMapper;
 import com.bytestorm.cursos.service.CursoService;
 import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +27,13 @@ public class CursoController {
 
     private final CursoService cursoService;
 
+    @Operation(summary = "Buscar todos os cursos", description = "Recurso para retornar todos os cursos",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+
+            }
+    )
     @GetMapping("buscar-cursos")
     public ResponseEntity<List<CursoRequisicaoDTO>> buscarTodosCursos() {
         List<Curso> cursos = cursoService.buscarTodosCursos();
@@ -29,6 +41,14 @@ public class CursoController {
         return ResponseEntity.ok(cursosDTO);
     }
 
+    @Operation(summary = "Buscar curso por id", description = "Recurso para retornar um curso referente ao ID específicado",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Busca realizada com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+            }
+    )
     @GetMapping("buscar-curso-id/{id}")
     public ResponseEntity<CursoRequisicaoDTO> buscarCursoPorId(@PathVariable Long id) {
         Curso curso = cursoService.buscarCursoPorId(id);
@@ -36,6 +56,13 @@ public class CursoController {
         return ResponseEntity.ok(cursoDTO);
     }
 
+    @Operation(summary = "Cadastro de curso", description = "Recurso para cadastrar curso",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Curso criado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "409", description = "Nome do curso já existe")
+            }
+    )
     @PostMapping("cadastrar")
     public ResponseEntity<CursoRequisicaoDTO> cadastrarCurso(@RequestBody @Valid CursoRequisicaoDTO dto) {
         Curso curso = CursoMapper.toEntity(dto);
@@ -43,6 +70,14 @@ public class CursoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(CursoMapper.toCursoRequisicaoDTO(curso));
     }
 
+    @Operation(summary = "Alterar Professor", description = "Recurso para fazer a alteração somente o atributo professor",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Professor alterado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+            }
+    )
     @PatchMapping("alterar-professor/{id}")
     public ResponseEntity<CursoRequisicaoDTO> alterarProfessor(@PathVariable Long id, @RequestBody @Valid CursoRequisicaoDTO dto) {
         String professor = dto.professor();
@@ -51,6 +86,14 @@ public class CursoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoAtualizado);
     }
 
+    @Operation(summary = "Inabilitar Curso", description = "Recurso para inabilitar um curso, recebendo como parâmetro um id, para localizar o curso a ser modificado",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Curso Inabilitado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Curso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+            }
+    )
     @PatchMapping("inabilitar-curso/{id}")
     public ResponseEntity<CursoRequisicaoDTO> inabilitarCurso(@PathVariable Long id) {
         Curso curso = cursoService.inabilitarCurso(id);
