@@ -4,6 +4,7 @@ import com.bytestorm.cursos.entity.Curso;
 
 import com.bytestorm.cursos.mapper.CursoMapper;
 import com.bytestorm.cursos.service.CursoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +37,14 @@ public class CursoController {
     }
 
     @PostMapping("cadastrar")
-    public ResponseEntity<CursoRequisicaoDTO> cadastrarCurso(@RequestBody CursoRequisicaoDTO dto) {
+    public ResponseEntity<CursoRequisicaoDTO> cadastrarCurso(@RequestBody @Valid CursoRequisicaoDTO dto) {
         Curso curso = CursoMapper.toEntity(dto);
         cursoService.cadastrarCurso(curso);
         return ResponseEntity.status(HttpStatus.CREATED).body(CursoMapper.toCursoRequisicaoDTO(curso));
     }
 
     @PatchMapping("alterar-professor/{id}")
-    public ResponseEntity<CursoRequisicaoDTO> alterarProfessor(@PathVariable Long id, @RequestBody CursoRequisicaoDTO dto) {
+    public ResponseEntity<CursoRequisicaoDTO> alterarProfessor(@PathVariable Long id, @RequestBody @Valid CursoRequisicaoDTO dto) {
         String professor = dto.professor();
         Curso novoProfessor = cursoService.alterarProfessor(id, professor);
         CursoRequisicaoDTO cursoAtualizado = CursoMapper.toCursoRequisicaoDTO(novoProfessor);
