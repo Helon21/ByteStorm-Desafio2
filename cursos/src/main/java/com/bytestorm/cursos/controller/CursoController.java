@@ -93,7 +93,9 @@ public class CursoController {
                     @ApiResponse(responseCode = "201", description = "Curso Inabilitado com sucesso",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
                     @ApiResponse(responseCode = "404", description = "Curso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(responseCode = "304", description = "Curso já inativo",
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             }
     )
     @PatchMapping("inabilitar-curso/{id}")
