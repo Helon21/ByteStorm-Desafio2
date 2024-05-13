@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static com.bytestorm.cursos.record.CursoRecord.CursoRequisicaoDTO;
+import static com.bytestorm.cursos.record.CursoRecord.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -82,10 +82,10 @@ public class CursoController {
             }
     )
     @PatchMapping("alterar-professor/{id}")
-    public ResponseEntity<CursoRequisicaoDTO> alterarProfessor(@PathVariable Long id, @RequestBody @Valid CursoRequisicaoDTO dto) {
+    public ResponseEntity<AlterarProfessorDto> alterarProfessor(@PathVariable Long id, @RequestBody @Valid AlterarProfessorDto dto) {
         String professor = dto.professor();
         Curso novoProfessor = cursoService.alterarProfessor(id, professor);
-        CursoRequisicaoDTO cursoAtualizado = CursoMapper.toCursoRequisicaoDTO(novoProfessor);
+        AlterarProfessorDto cursoAtualizado = CursoMapper.toAlterarProfessorDto(novoProfessor);
         return ResponseEntity.status(HttpStatus.CREATED).body(cursoAtualizado);
     }
 
