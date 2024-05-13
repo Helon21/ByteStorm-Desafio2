@@ -163,7 +163,7 @@ de Alunos. Essa abordagem foi adotada para manter a separação de preocupaçõe
 garantir que cada serviço seja responsável apenas por suas operações específicas, evitando assim
 a duplicação de dados e mantendo a integridade e consistência do sistema como um todo.
 
-Endpoints extras foram adicionados para facilitar a busca de um curso quando requisitado através da API de alunos,
+Endpoints extras foram adicionados na API de Cursos para facilitar a busca de um curso quando requisitado através da API de alunos,
 como o buscar curso por Id. 
 
 ## Testes Automatizados
