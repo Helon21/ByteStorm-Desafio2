@@ -5,6 +5,7 @@ API para gestão de cursos, criada para o desafio 2.
 ### 📋 Pré-requisitos
 
 É necessário ter a JDK 17+ em sua máquina para rodar a API.
+Postman para testar os endpoints.
 
 ## 🛠️ Construído com
 
@@ -18,15 +19,47 @@ API para gestão de cursos, criada para o desafio 2.
 * **Matheus Laurentino** - *desenvolvedor backend* - [desenvolvedor](https://github.com/MathLaurentino).
 * **Helon Xavier** - *desenvolvedor backend* - [desenvolvedor](https://github.com/Helon21).
 
+## Instalação
+
+1. Clone este repositório:
+```
+  git clone https://github.com/Helon21/ByteStorm-Desafio2.git
+```
+
+2. Navegue até o diretório do projeto:
+```
+cd ByteStorm-Desafio2
+```
+
+3. Abra-o no IntelliJ. No menu "Project Structure", certifique-se de selecionar o
+   SDK e o nível de linguagem Java 17.
+
+
+4. Instale as dependências usando o Maven.
+
+
+5. Após a instalação, inicie o servidor. Ele estará disponível em:
+```
+  http://localhost:8080/
+```
+
+6. Se você possui o Postman instalado, importe o arquivo
+   "API-Cursos.postman_collection.json" que contém todas as rotas da API.
+
+
+7. Acesse a documentação do Swagger através da seguinte URL:
+```
+  http://localhost:8080/docs-curso.html
+```
+
+
 # Micro Serviço de Gerenciamento de Alunos
 
 ## Funcionalidades 
 
-1. Cadastrar alunos;
-2. Matricular alunos a determinados cursos;
-3. Inativar a matrícula de um aluno a curso;
-4. Consultar alunos matriculados em um curso;
-5. Inativar um aluno.
+1. Cadastrar curso;
+2. Inabilitar curso;
+3. Alterar professor de um curso já cadastrado;
 
 ## Documentação da API
 
