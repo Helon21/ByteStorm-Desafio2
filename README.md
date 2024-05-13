@@ -151,3 +151,33 @@ retorno:
     "areaConhecimento": "ENGENHARIA_SOFTWARE",
     "ativo": false
 }
+
+## Decisões Técnicas
+
+### Entidades do Sistema
+
+
+A entidade Aluno possui como um de seus atributos uma lista de matrículas. Essa lista reflete os
+cursos em que o aluno está atualmente matriculado.
+Além disso, a entidade Aluno também possui um campo booleano chamado "ativo", que indica se o
+aluno pode ou não realizar matrículas em cursos.
+
+#### Curso
+
+A API de gestão de cursos, tem como finalidade, passar os parâmetros dos cursos para o microserviço
+de Alunos. Essa abordagem foi adotada para manter a separação de preocupações e
+garantir que cada serviço seja responsável apenas por suas operações específicas, evitando assim
+a duplicação de dados e mantendo a integridade e consistência do sistema como um todo.
+
+Endpoints extras foram adicionados para facilitar a busca de um curso quando requisitado através da API de alunos,
+como o buscar curso por Id. 
+
+## Testes Automatizados
+
+foram implementados testes de unidade, em todos os métodos da camada de serviço: 
+buscarTodosCursos, buscarCursoPorId, cadastrarCurso, alterarProfessor, inabilitarCurso. 
+
+Para acessar os testes, navegue até a pasta:
+```
+    src/test/java/com/bytestorm/cursos
+```
