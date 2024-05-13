@@ -156,12 +156,6 @@ retorno:
 
 ### Entidades do Sistema
 
-
-A entidade Aluno possui como um de seus atributos uma lista de matrículas. Essa lista reflete os
-cursos em que o aluno está atualmente matriculado.
-Além disso, a entidade Aluno também possui um campo booleano chamado "ativo", que indica se o
-aluno pode ou não realizar matrículas em cursos.
-
 #### Curso
 
 A API de gestão de cursos, tem como finalidade, passar os parâmetros dos cursos para o microserviço
