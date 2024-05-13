@@ -1,12 +1,12 @@
 package com.bytestorm.cursos.mapper;
 
 import com.bytestorm.cursos.entity.Curso;
-import com.bytestorm.cursos.record.CursoRecord;
+import static com.bytestorm.cursos.record.CursoRecord.*;
 
 public class CursoMapper {
 
-    public static CursoRecord.CursoRequisicaoDTO toCursoRequisicaoDTO(Curso curso) {
-        return CursoRecord.CursoRequisicaoDTO.builder()
+    public static CursoRequisicaoDTO toCursoRequisicaoDTO(Curso curso) {
+        return CursoRequisicaoDTO.builder()
                 .id(curso.getId())
                 .nome(curso.getNome())
                 .quantidadeHoras(curso.getQuantidadeHoras())
@@ -16,7 +16,13 @@ public class CursoMapper {
                 .build();
     }
 
-    public static Curso toEntity(CursoRecord.CursoRequisicaoDTO dto) {
+    public static AlterarProfessorDto toAlterarProfessorDto(Curso curso) {
+        return AlterarProfessorDto.builder()
+                .professor(curso.getProfessor())
+                .build();
+    }
+
+    public static Curso toEntity(CursoRequisicaoDTO dto) {
         Curso curso = new Curso();
         curso.setNome(dto.nome());
         curso.setQuantidadeHoras(dto.quantidadeHoras());

@@ -24,4 +24,11 @@ public class CursoRecord {
             boolean ativo
     ) {
     }
+
+    @Builder
+    public record AlterarProfessorDto(
+            @NotBlank
+            String professor
+    ){
+    }
 }
