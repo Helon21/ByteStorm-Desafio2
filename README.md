@@ -5,6 +5,7 @@ API para gestão de cursos, criada para o desafio 2.
 ### 📋 Pré-requisitos
 
 É necessário ter a JDK 17+ em sua máquina para rodar a API.
+Postman para testar os endpoints.
 
 ## 🛠️ Construído com
 
@@ -17,3 +18,166 @@ API para gestão de cursos, criada para o desafio 2.
 
 * **Matheus Laurentino** - *desenvolvedor backend* - [desenvolvedor](https://github.com/MathLaurentino).
 * **Helon Xavier** - *desenvolvedor backend* - [desenvolvedor](https://github.com/Helon21).
+
+## Instalação
+
+1. Clone este repositório:
+```
+  git clone https://github.com/Helon21/ByteStorm-Desafio2.git
+```
+
+2. Navegue até o diretório do projeto:
+```
+cd ByteStorm-Desafio2
+```
+
+3. Abra-o no IntelliJ. No menu "Project Structure", certifique-se de selecionar o
+   SDK e o nível de linguagem Java 17.
+
+
+4. Instale as dependências usando o Maven.
+
+
+5. Após a instalação, inicie o servidor. Ele estará disponível em:
+```
+  http://localhost:8080/
+```
+
+6. Se você possui o Postman instalado, importe o arquivo
+   "API-Cursos.postman_collection.json" que contém todas as rotas da API.
+
+
+7. Acesse a documentação do Swagger através da seguinte URL:
+```
+  http://localhost:8080/docs-curso.html
+```
+
+
+# Micro Serviço de Gerenciamento de Alunos
+
+## Funcionalidades 
+
+1. Cadastrar curso;
+2. Inabilitar curso;
+3. Alterar professor de um curso já cadastrado;
+
+## Documentação da API
+
+### Lista dos tipos enumerados para criação de curso
+
+```
+ENGENHARIA_SOFTWARE, FISICA, MEDICINA
+```
+
+### Cursos
+
+#### Cadastrar um novo curso
+
+```http
+  POST /api/v1/cursos/cadastrar
+```
+```
+{ 
+    "nome": "Teoria da Computação",
+    "quantidadeHoras": 10,
+    "professor": "Girafales",
+    "areaConhecimento": "ENGENHARIA_SOFTWARE",
+    "ativo": true (opcional, pois já é definido como true automáticamente ao criar um curso)
+}
+```
+
+#### Buscar cursos por id
+
+```http
+  GET /api/v1/cursos/buscar-curso-id/{id}
+```
+retorno:
+```
+{
+    "nome": "Teoria da Computação",
+    "quantidadeHoras": 10,
+    "professor": "Girafales",
+    "areaConhecimento": "ENGENHARIA_SOFTWARE",
+    "ativo": true
+}
+```
+
+### Buscar todos os cursos
+
+```http
+  GET /api/v1/cursos/buscar-cursos
+```
+retorno:
+```
+{
+    "nome": "Teoria da Computação",
+    "quantidadeHoras": 10,
+    "professor": "Girafales",
+    "areaConhecimento": "ENGENHARIA_SOFTWARE",
+    "ativo": true
+}
+```
+
+#### Alterar Professor
+
+```http
+  PATCH /api/v1/cursos/alterar-professor/{id}
+{
+    "professor":"Seu Madruga"
+}
+```
+retorno:
+```
+{
+    "nome": "Teoria da Computação",
+    "quantidadeHoras": 10,
+    "professor": "Seu Madruga",
+    "areaConhecimento": "ENGENHARIA_SOFTWARE",
+    "ativo": true
+}
+```
+
+### Inabilitar Curso
+
+```http
+  PATCH /api/v1/inabilitar-curso/{id}
+```
+retorno:
+```
+{
+    "nome": "Teoria da Computação",
+    "quantidadeHoras": 10,
+    "professor": "Girafales",
+    "areaConhecimento": "ENGENHARIA_SOFTWARE",
+    "ativo": false
+}
+
+## Decisões Técnicas
+
+### Entidades do Sistema
+
+
+A entidade Aluno possui como um de seus atributos uma lista de matrículas. Essa lista reflete os
+cursos em que o aluno está atualmente matriculado.
+Além disso, a entidade Aluno também possui um campo booleano chamado "ativo", que indica se o
+aluno pode ou não realizar matrículas em cursos.
+
+#### Curso
+
+A API de gestão de cursos, tem como finalidade, passar os parâmetros dos cursos para o microserviço
+de Alunos. Essa abordagem foi adotada para manter a separação de preocupações e
+garantir que cada serviço seja responsável apenas por suas operações específicas, evitando assim
+a duplicação de dados e mantendo a integridade e consistência do sistema como um todo.
+
+Endpoints extras foram adicionados para facilitar a busca de um curso quando requisitado através da API de alunos,
+como o buscar curso por Id. 
+
+## Testes Automatizados
+
+foram implementados testes de unidade, em todos os métodos da camada de serviço: 
+buscarTodosCursos, buscarCursoPorId, cadastrarCurso, alterarProfessor, inabilitarCurso. 
+
+Para acessar os testes, navegue até a pasta:
+```
+    src/test/java/com/bytestorm/cursos
+```
