@@ -15,15 +15,13 @@ public class SpringDocOpenApiConfig {
     @Bean
     public OpenAPI openAPI() {
         return new OpenAPI()
-                .components(new Components().addSecuritySchemes("security", new SecurityScheme()))
                 .info(
                         new Info()
-                                .title("Rest API - Spring Park")
-                                .description("API para gestão de estacionamento de veículos")
+                                .title("Rest API - Gestão Cursos")
+                                .description("API para gestão de cursos")
                                 .version("v1")
                                 .license(new License().name("Apache 2.0").url("https://www.apache.org/licenses/LICENSE-2.0"))
-                                .contact(new Contact().name("Helon Xavier, Matheus Laurentino, Vitor Santos"))
+                                .contact(new Contact().name("Helon Xavier, Matheus Laurentino"))
                 );
     }
-
 }

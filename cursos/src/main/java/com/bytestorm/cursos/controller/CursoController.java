@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.ErrorMessage;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,8 @@ import static com.bytestorm.cursos.record.CursoRecord.CursoRequisicaoDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Tag(name = "Cursos", description = "Contém todas as operações relativas a gestão de curso")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/cursos/")
@@ -91,7 +94,9 @@ public class CursoController {
                     @ApiResponse(responseCode = "201", description = "Curso Inabilitado com sucesso",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoRequisicaoDTO.class))),
                     @ApiResponse(responseCode = "404", description = "Curso não encontrado",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                    @ApiResponse(responseCode = "304", description = "Curso já inativo",
+                        content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class)))
             }
     )
     @PatchMapping("inabilitar-curso/{id}")
