@@ -1,11 +1,10 @@
-package com.bytestorm.cursos;
+package com.bytestorm.cursos.service;
 
 import com.bytestorm.cursos.entity.Curso;
 import com.bytestorm.cursos.exception.CursoInativoException;
 import com.bytestorm.cursos.exception.CursoNaoEncontradoException;
 import com.bytestorm.cursos.exception.NomeCursoRepetidoException;
 import com.bytestorm.cursos.repository.CursoRepository;
-import com.bytestorm.cursos.service.CursoService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
